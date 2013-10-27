@@ -27,7 +27,7 @@ window.onload = function(e) {
 	          		case "up":
 	          			scroll_index--;
 	          			if (scroll_index >= 0) {
-	          				var post = $(".mainWrapper").get(scroll_index);
+	          				var post = $(".mainWrapper").get(scroll_index-1);
 	          				$(window).scrollTo(post, {offset:-50, duration: 750});
 	          				console.log(post);
 	          			}
