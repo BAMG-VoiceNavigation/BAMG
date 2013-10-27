@@ -69,7 +69,7 @@
 	          			$(document).find('.snowliftPager').get(1).click();
 	          			break;
 	          		case "profile":
-	          			location.href = $(document).find('div.mainWrapper').eq(0).find('div a:first').attr('href');
+	          			location.href = $(document).find('div.mainWrapper').eq(scroll_index-1).find('div a:first').attr('href');
 	          			break;
 	          		case "photos":
 	          			location.href = location.href.split('?')[0]+'/photos';
