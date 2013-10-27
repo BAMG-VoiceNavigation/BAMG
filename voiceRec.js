@@ -22,13 +22,13 @@ window.onload = function(e) {
 	          			var post = $(".mainWrapper").get(scroll_index);
 	          			scroll_index++;
 	          			console.log(post);
-	          			$(window).scrollTo(post);
+	          			$(window).scrollTo(post, {offset:-50, duration: 750});
 	          			break;
 	          		case "up":
 	          			scroll_index--;
 	          			if (scroll_index >= 0) {
 	          				var post = $(".mainWrapper").get(scroll_index);
-	          				$(window).scrollTo(post);
+	          				$(window).scrollTo(post, {offset:-50, duration: 750});
 	          				console.log(post);
 	          			}
 	          			else {
@@ -39,7 +39,7 @@ window.onload = function(e) {
 	          			scroll_index--;
 	          			if (scroll_index >= 0) {
 	          				var post = $(".mainWrapper").get(scroll_index);
-	          				$(window).scrollTo(post);
+	          				$(window).scrollTo(post, {offset:-50, duration: 750});
 	          				console.log(post);
 	          			}
 	          			else {
