@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "Voice Control Web Navigation",
+  "description": "This extension allows you to vocally manipulate your web pages",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "logo_charcoal.png"
+  },
+  "content_scripts": [
+    { "matches": ["https://www.facebook.com/*"], "js": ["voiceRec.js", "jquery.js", "scrollto.js"] }
+  ],
+  "permissions": ["tabs"]
+}
