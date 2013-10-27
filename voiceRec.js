@@ -1,6 +1,6 @@
 
 
-// window.onload = function(e) {
+window.onload = function(e) {
 	var recognition = new webkitSpeechRecognition();
 	recognition.continuous = true;
 	recognition.interimResults = true;
@@ -13,7 +13,6 @@
         	if (event.results[i].isFinal) {
 	          	var command = event.results[i][0].transcript.toLowerCase().replace(/ /g,'');
 	          	console.log(command);
-	          	//console.log($(".mainWrapper").get(3));
 	          	switch (command) {
 	          		case "facebook":
 	          			location.href='https://www.facebook.com';
@@ -88,4 +87,4 @@
         	}
    	 	}
 	}	
-// }
+}
