@@ -49,7 +49,7 @@
 	          			if (location.href == 'https://www.facebook.com') {	
 	          				var post = $(".mainWrapper").get(scroll_index-1);
 	          				console.log($(post).find('.UFILikeLink').get(0));
-	          				$(post).find('.UFILikeLink').get(0).click();
+	          				$(post).find('.UFILikeLink').get(scroll_index-1).click();
 	          			} else {
 	          				$(document).find('.UFILikeLink').get(0).click();
 	          			}
