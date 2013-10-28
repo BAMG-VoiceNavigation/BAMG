@@ -81,6 +81,18 @@ window.onload = function(e) {
 	          			is_news_feed = 0;
 	          			location.href = location.href.split('?')[0]+'/photos';
 	          			break;
+	          		case "notifications":
+	          			location.href = "https://www.facebook.com/notifications";
+	          			break;
+	          		case "messages":
+	          			location.href = "https://www.facebook.com/messages";
+	          			break;
+	          		case "friendrequest":
+	          			location.href = "https://www.facebook.com/friends/requests";
+	          			break;
+	          		case "stop":
+	          			recorder.stop();
+	          			break;
 	          		default:
 	          			console.log("default");
 	          	}
