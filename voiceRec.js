@@ -4,14 +4,20 @@ window.onload = function(e) {
 	var recognition = new webkitSpeechRecognition();
 	recognition.continuous = true;
 	recognition.interimResults = true;
-	recognition.lang = "en";
+	recognition.lang = "ro-RO";
 	recognition.start();
 	var scroll_index = 0;
 	var is_news_feed = 1;
+	var is_searching = 0;
+	console.log("penis");
 	recognition.onresult = function (event) {
     	for (var i = event.resultIndex; i < event.results.length; ++i) {
         	if (event.results[i].isFinal) {
-	          	var command = event.results[i][0].transcript.toLowerCase().replace(/ /g,'');
+        		if (is_searching == 0) {
+	          		var command = event.results[i][0].transcript.toLowerCase().replace(/ /g,'');
+	          	} else {
+	          		var command = event.results[i][0].transcript.toLowerCase();
+	          	}
 	          	console.log(command);
 	          	switch (command) {
 	          		case "facebook":
@@ -90,11 +96,20 @@ window.onload = function(e) {
 	          		case "friendrequest":
 	          			location.href = "https://www.facebook.com/friends/requests";
 	          			break;
-	          		case "stop":
-	          			recorder.stop();
-	          			break;
+	          		case "search":
+			          	is_searching = 1;
+			          	continue;
+			        case "stop":
+			        	recognition.stop();
 	          		default:
 	          			console.log("default");
+	          			if (is_searching == 1) {
+	          				document.getElementById("q").value = command;
+	          				setTimeout(function(){
+	          					$("button").get(0).click();
+		          				is_searching = 0;
+	          				},2000)
+	          			}
 	          	}
         	}
    	 	}
