@@ -99,6 +99,9 @@ window.onload = function(e) {
 	          		case "search":
 			          	is_searching = 1;
 			          	continue;
+			        case "sarci":
+			          	is_searching = 1;
+			          	continue;
 			        case "stop":
 			        	recognition.stop();
 	          		default:
@@ -107,8 +110,12 @@ window.onload = function(e) {
 	          				document.getElementById("q").value = command;
 	          				setTimeout(function(){
 	          					$("button").get(0).click();
-		          				is_searching = 0;
-	          				},2000)
+		          				is_searching = 0;    				
+	          				},1000)
+	          				setTimeout(function(){
+	          					console.log($(document).find("div.instant_search_title a")[0]);
+	          					$(document).find("div.instant_search_title a")[0].click();
+	          				},2000);
 	          			}
 	          	}
         	}
