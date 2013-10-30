@@ -2,6 +2,9 @@
 
 window.onload = function(e) {
 	var recognition = new webkitSpeechRecognition();
+	setInterval(function() {
+		recognition = new webkitSpeechRecognition();
+	}, 55000);
 	recognition.continuous = true;
 	recognition.interimResults = true;
 	recognition.lang = "ro-RO";
@@ -115,7 +118,7 @@ window.onload = function(e) {
 	          		default:
 	          			console.log("default");
 	          			if (is_searching == 1) {
-	          				document.getElementById("q").value = command;
+	          				$("input").get(0).value = command;
           					$("button").get(0).click();
 		          			is_searching = 0;    				
 	          			}
