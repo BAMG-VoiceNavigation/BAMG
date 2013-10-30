@@ -118,10 +118,15 @@ window.onload = function(e) {
 	          		default:
 	          			console.log("default");
 	          			if (is_searching == 1) {
-	          				$("input").get(0).value = command;
-          					$("button").get(0).click();
-		          			is_searching = 0;    				
+	          				document.getElementsByClassName("inputtext DOMControl_placeholder")[1].value = command;
+	          				console.log($("inputtext").get(0));
 	          			}
+						setTimeout(function(){
+	          				if (is_searching == 1) {
+	          					$("button").get(0).click();
+		          				is_searching = 0;    				
+	          				}
+	          			},5000)
 	          	}
         	}
    	 	}
