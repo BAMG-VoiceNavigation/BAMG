@@ -8,12 +8,14 @@ window.onload = function(e) {
 	recognition.start();
 	var scroll_index = 0;
 	var is_news_feed = 1;
-	var is_searching = 0;
+	var is_searching = -1; // -1 cand nu are nicio legatura cu search; 
+						   // 1 cand am zis search si urmeaza sa-i zic ce sa caute
+						   // 0 cand am cautat si urmeaza sa-i dau comanda go
 	console.log("penis");
 	recognition.onresult = function (event) {
     	for (var i = event.resultIndex; i < event.results.length; ++i) {
         	if (event.results[i].isFinal) {
-        		if (is_searching == 0) {
+        		if (is_searching != 1) {
 	          		var command = event.results[i][0].transcript.toLowerCase().replace(/ /g,'');
 	          	} else {
 	          		var command = event.results[i][0].transcript.toLowerCase();
@@ -102,20 +104,20 @@ window.onload = function(e) {
 			        case "sarci":
 			          	is_searching = 1;
 			          	continue;
+			        case "go":
+			        	if (is_searching == 0) {
+	          				console.log($(document).find("div.instant_search_title a")[0]);
+	          				$(document).find("div.instant_search_title a")[0].click();
+	          				break;
+	          			}
 			        case "stop":
 			        	recognition.stop();
 	          		default:
 	          			console.log("default");
 	          			if (is_searching == 1) {
 	          				document.getElementById("q").value = command;
-	          				setTimeout(function(){
-	          					$("button").get(0).click();
-		          				is_searching = 0;    				
-	          				},1000)
-	          				setTimeout(function(){
-	          					console.log($(document).find("div.instant_search_title a")[0]);
-	          					$(document).find("div.instant_search_title a")[0].click();
-	          				},2000);
+          					$("button").get(0).click();
+		          			is_searching = 0;    				
 	          			}
 	          	}
         	}
