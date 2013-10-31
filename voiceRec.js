@@ -14,11 +14,16 @@ window.onload = function(e) {
 	var is_searching = -1; // -1 cand nu are nicio legatura cu search; 
 						   // 1 cand am zis search si urmeaza sa-i zic ce sa caute
 						   // 0 cand am cautat si urmeaza sa-i dau comanda go
+	var is_commenting = 0;
+	var is_sharing = -1; // -1 cand nu are nicio legatura cu share; 
+						 // 1 cand am zis share si urmeaza sa-i zic ce sa scrie la share
+						 // 0 cand am scris mesajul si urmeaza sa-i dau comanda 'Share' din nou 
+	var comment_box;
 	console.log("penis");
 	recognition.onresult = function (event) {
     	for (var i = event.resultIndex; i < event.results.length; ++i) {
         	if (event.results[i].isFinal) {
-        		if (is_searching != 1) {
+        		if (is_searching != 1 && is_sharing != 1 && is_commenting != 1) {
 	          		var command = event.results[i][0].transcript.toLowerCase().replace(/ /g,'');
 	          	} else {
 	          		var command = event.results[i][0].transcript.toLowerCase();
@@ -65,7 +70,29 @@ window.onload = function(e) {
 	          			} else {
 	          				$(document).find('.UFILikeLink').get(0).click();
 	          			}
-	          				break;
+	          			break;
+	          		case "comment":
+	          			if (is_news_feed == 1) {
+	          				var post = $(".mainWrapper").get(scroll_index-1);
+	          				$(post).find('.uiLinkButton').get(0).click();
+	          				comment_box = $(post).find("textarea").get(0);
+	          				console.log(comment_box);
+	          				comment_box.click();
+	          				is_commenting = 1;
+	          			}
+	          			break;
+	          		case "share":
+	          			if (is_news_feed == 1) {
+	          				if (is_sharing == -1) {	
+	          					var post = $(".mainWrapper").get(scroll_index-1);
+	          					$(post).find('.share_action_link').get(0).click();
+	          					is_sharing = 1;
+	          				} else if (is_sharing == 0) {
+	          					document.getElementsByClassName("_s")[0].getElementsByTagName("button")[2].click();
+	          					is_sharing = 0;
+	          				}
+	          			}
+	          			break;
 	          		case "zoom":
 	          			is_news_feed = 0;
 	          			console.log($(document).find('a.uiMediaThumb._6i9.uiMediaThumbMedium').get(1));
@@ -96,37 +123,57 @@ window.onload = function(e) {
 	          			location.href = "https://www.facebook.com/notifications";
 	          			break;
 	          		case "messages":
+	          			is_news_feed = 0;
 	          			location.href = "https://www.facebook.com/messages";
 	          			break;
 	          		case "friendrequest":
+	          			is_news_feed = 0;
 	          			location.href = "https://www.facebook.com/friends/requests";
 	          			break;
 	          		case "search":
+	          			is_news_feed = 0;
 			          	is_searching = 1;
 			          	continue;
 			        case "sarci":
+			        	is_news_feed = 0;
 			          	is_searching = 1;
 			          	continue;
 			        case "go":
+			        	is_news_feed = 0;
 			        	if (is_searching == 0) {
 	          				console.log($(document).find("div.instant_search_title a")[0]);
 	          				$(document).find("div.instant_search_title a")[0].click();
 	          				break;
 	          			}
+	          		case "cancel":
+	          			is_searching = -1;
+	          			is_commenting = 0;
+	          			break;
 			        case "stop":
 			        	recognition.stop();
 	          		default:
 	          			console.log("default");
-	          			if (is_searching == 1) {
-	          				document.getElementsByClassName("inputtext DOMControl_placeholder")[1].value = command;
-	          				console.log($("inputtext").get(0));
-	          			}
-						setTimeout(function(){
-	          				if (is_searching == 1) {
-	          					$("button").get(0).click();
-		          				is_searching = 0;    				
-	          				}
-	          			},5000)
+	          			// begin if is_searching
+          				if (is_searching == 1) {
+	          				$(".inputtext").get(0).click();
+	          				$(".inputtext").get(0).value = command;
+	          				console.log($(".inputtext").get(0).value);
+	          				$("button").get(0).click();
+		          			is_searching = 0;    				
+	          			} // end if is_searching
+	          			// begin if is_commenting
+	          			if (is_commenting == 1) {
+	          				comment_box.value = command;
+	          				is_commenting = 0;
+	          				//$(document).find(".commentable_item").get(0).submit();
+	          			} // end if is_commenting
+	          			// begin if is_sharing
+	          			if (is_sharing == 1) {
+	          				var tmp = document.getElementsByClassName("_s")[0].getElementsByTagName("textarea")[0];
+	          				tmp.click();
+	          				tmp.value = command;
+	          				is_sharing = 0;
+	          			} // end if is_sharing
 	          	}
         	}
    	 	}
