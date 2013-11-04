@@ -164,6 +164,7 @@ window.onload = function(e) {
 			        	// recognition.stop();
 			        	exit_status = true;
 			        	break;
+			        case "resume":
 			        case "start":
 			        	port.postMessage({command : "Starting to record"});
 			        	exit_status = false;
