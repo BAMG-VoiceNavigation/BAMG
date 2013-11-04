@@ -20,6 +20,8 @@ window.onload = function(e) {
 						 // 1 cand am zis share si urmeaza sa-i zic ce sa scrie la share
 						 // 0 cand am scris mesajul si urmeaza sa-i dau comanda 'Share' din nou 
 	var comment_box;
+
+	var exit_status = false; // for pausing the recorder
 	console.log("penis");
 	recognition.onresult = function (event) {
     	for (var i = event.resultIndex; i < event.results.length; ++i) {
@@ -30,6 +32,12 @@ window.onload = function(e) {
 	          		var command = event.results[i][0].transcript.toLowerCase();
 	          	}
 	          	console.log(command);
+	          	if (exit_status == true && command != "start") {
+	          		return;
+	          	}
+	          	else {
+	          		exit_status = false;
+	          	}
 	          	switch (command) {
 	          		case "facebook":
 	          			location.href='https://www.facebook.com';
@@ -153,7 +161,12 @@ window.onload = function(e) {
 	          			break;
 			        case "exit":
 			        	port.postMessage({command : "Exit, recording will now stop"});
-			        	recognition.stop();
+			        	// recognition.stop();
+			        	exit_status = true;
+			        	break;
+			        case "start":
+			        	port.postMessage({command : "Starting to record"});
+			        	exit_status = false;
 			        	break;
 	          		default:
 	          			port.postMessage({command : "Penis, ia mai spune o data!"})
