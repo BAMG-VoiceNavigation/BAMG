@@ -1,32 +1,26 @@
-
+var tab_id;
 function updateSelected(tabId) {
     chrome.pageAction.setTitle({tabId:tabId, title:"ana are mere"});
 }
 
 chrome.tabs.onUpdated.addListener(function(tabId, change, tab) {
-
+  tab_id = tabId;
 });
 
 chrome.tabs.onSelectionChanged.addListener(function(tabId, info) {
-  selectedId = tabId;
-  updateSelected(tabId);
+  tab_id = tabId;
 });
 
 
-function get_random_color() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.round(Math.random() * 15)];
-    }
-    return color;
-}
 
 chrome.runtime.onConnect.addListener(function(port) {
-	console.assert(port.name == "sphinxChannel");
+	console.assert(port.name == "BAMGchannel");
 	port.onMessage.addListener(function(msg) {
-		if (msg.state == "ready")
-			port.postMessage({color:get_random_color()});
+		if (msg.command == "down") {
+      port.postMessage({ok : "pizda"});
+
+    }
+      
 	});
 });
 

@@ -1,6 +1,11 @@
 
 
 window.onload = function(e) {
+	var port = chrome.runtime.connect({name: "BAMGchannel"});
+	port.onMessage.addListener(function(msg) {
+			console.log(msg.ok);
+			console.log("trebuia sa mearga");
+	});
 	var recognition = new webkitSpeechRecognition();
 	setInterval(function() {
 		recognition = new webkitSpeechRecognition();
@@ -35,6 +40,14 @@ window.onload = function(e) {
 	          			is_news_feed = 1;
 	          			break;
 	          		case "down":
+	          			port.postMessage({command : "down"})
+	          			var post = $(".mainWrapper").get(scroll_index);
+	          			scroll_index++;
+	          			console.log(post);
+	          			$(window).scrollTo(post, {offset:-50, duration: 750});
+	          			break;
+	          		case "download":
+	          			port.postMessage({command : "down"})
 	          			var post = $(".mainWrapper").get(scroll_index);
 	          			scroll_index++;
 	          			console.log(post);
@@ -149,7 +162,7 @@ window.onload = function(e) {
 	          			is_searching = -1;
 	          			is_commenting = 0;
 	          			break;
-			        case "stop":
+			        case "exit":
 			        	recognition.stop();
 	          		default:
 	          			console.log("default");
