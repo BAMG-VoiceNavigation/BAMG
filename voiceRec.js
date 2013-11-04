@@ -2,10 +2,6 @@
 
 window.onload = function(e) {
 	var port = chrome.runtime.connect({name: "BAMGchannel"});
-	port.onMessage.addListener(function(msg) {
-			console.log(msg.ok);
-			console.log("trebuia sa mearga");
-	});
 	var recognition = new webkitSpeechRecognition();
 	setInterval(function() {
 		recognition = new webkitSpeechRecognition();
@@ -39,32 +35,18 @@ window.onload = function(e) {
 	          			location.href='https://www.facebook.com';
 	          			is_news_feed = 1;
 	          			break;
-	          		case "down":
-	          			port.postMessage({command : "down"})
-	          			var post = $(".mainWrapper").get(scroll_index);
-	          			scroll_index++;
-	          			console.log(post);
-	          			$(window).scrollTo(post, {offset:-50, duration: 750});
-	          			break;
 	          		case "download":
-	          			port.postMessage({command : "down"})
+	          		case "braun":
+	          		case "down":
+	          			port.postMessage({command : "Down"});
 	          			var post = $(".mainWrapper").get(scroll_index);
 	          			scroll_index++;
 	          			console.log(post);
 	          			$(window).scrollTo(post, {offset:-50, duration: 750});
-	          			break;
-	          		case "up":
-	          			scroll_index--;
-	          			if (scroll_index >= 0) {
-	          				var post = $(".mainWrapper").get(scroll_index-1);
-	          				$(window).scrollTo(post, {offset:-50, duration: 750});
-	          				console.log(post);
-	          			}
-	          			else {
-	          				scroll_index = 0;
-	          			}
 	          			break;
 	          		case "op":
+	          		case "up":
+	          			port.postMessage({command : "Up"});
 	          			scroll_index--;
 	          			if (scroll_index >= 0) {
 	          				var post = $(".mainWrapper").get(scroll_index-1);
@@ -76,6 +58,7 @@ window.onload = function(e) {
 	          			}
 	          			break;
 	          		case "like":
+	          			port.postMessage({command : "Like"});
 	          			if (is_news_feed == 1) {	
 	          				var post = $(".mainWrapper").get(scroll_index-1);
 	          				console.log(post);
@@ -85,6 +68,7 @@ window.onload = function(e) {
 	          			}
 	          			break;
 	          		case "comment":
+	          			port.postMessage({command : "Comment"});
 	          			if (is_news_feed == 1) {
 	          				var post = $(".mainWrapper").get(scroll_index-1);
 	          				$(post).find('.uiLinkButton').get(0).click();
@@ -95,6 +79,7 @@ window.onload = function(e) {
 	          			}
 	          			break;
 	          		case "share":
+	          			port.postMessage({command : "Share"});
 	          			if (is_news_feed == 1) {
 	          				if (is_sharing == -1) {	
 	          					var post = $(".mainWrapper").get(scroll_index-1);
@@ -106,52 +91,55 @@ window.onload = function(e) {
 	          				}
 	          			}
 	          			break;
-	          		case "zoom":
-	          			is_news_feed = 0;
-	          			console.log($(document).find('a.uiMediaThumb._6i9.uiMediaThumbMedium').get(1));
-	          			$(document).find('a.uiMediaThumb._6i9.uiMediaThumbMedium').get(0).click();
-	          			break;
 	          		case "loom":
+	          		case "zoom":
+	          			port.postMessage({command : "Zoom"});
 	          			is_news_feed = 0;
 	          			console.log($(document).find('a.uiMediaThumb._6i9.uiMediaThumbMedium').get(1));
 	          			$(document).find('a.uiMediaThumb._6i9.uiMediaThumbMedium').get(0).click();
-	          			break;	          			
+	          			break;          			
 	          		case "back":
+	          			port.postMessage({command : "Back"});
 	          			is_news_feed = 0;
 	          			$(document).find('.snowliftPager').get(0).click();
 	          			break;
 	          		case "next":
+	          			port.postMessage({command : "Next"});
 	          			is_news_feed = 0;
 	          			$(document).find('.snowliftPager').get(1).click();
 	          			break;
 	          		case "profile":
+	          			port.postMessage({command : "Profile"});
 	          			is_news_feed = 0;
 	          			location.href = $(document).find('div.mainWrapper').eq(scroll_index-1).find('div a:first').attr('href');
 	          			break;
 	          		case "photos":
+	          			port.postMessage({command : "Photos"});
 	          			is_news_feed = 0;
 	          			location.href = location.href.split('?')[0]+'/photos';
 	          			break;
 	          		case "notifications":
+	          			port.postMessage({command : "Notifications"});
 	          			location.href = "https://www.facebook.com/notifications";
 	          			break;
 	          		case "messages":
+	          			port.postMessage({command : "Messages"});
 	          			is_news_feed = 0;
 	          			location.href = "https://www.facebook.com/messages";
 	          			break;
 	          		case "friendrequest":
+	          			port.postMessage({command : "Friend requests"});
 	          			is_news_feed = 0;
 	          			location.href = "https://www.facebook.com/friends/requests";
 	          			break;
+	          		case "sarci":
 	          		case "search":
+	          			port.postMessage({command : "Search"});
 	          			is_news_feed = 0;
 			          	is_searching = 1;
 			          	continue;
-			        case "sarci":
-			        	is_news_feed = 0;
-			          	is_searching = 1;
-			          	continue;
 			        case "go":
+			        	port.postMessage({command : "Go"});
 			        	is_news_feed = 0;
 			        	if (is_searching == 0) {
 	          				console.log($(document).find("div.instant_search_title a")[0]);
@@ -159,12 +147,16 @@ window.onload = function(e) {
 	          				break;
 	          			}
 	          		case "cancel":
+	          			port.postMessage({command : "Cancel"});
 	          			is_searching = -1;
 	          			is_commenting = 0;
 	          			break;
 			        case "exit":
+			        	port.postMessage({command : "Exit, recording will now stop"});
 			        	recognition.stop();
+			        	break;
 	          		default:
+	          			port.postMessage({command : "Penis, ia mai spune o data!"})
 	          			console.log("default");
 	          			// begin if is_searching
           				if (is_searching == 1) {
