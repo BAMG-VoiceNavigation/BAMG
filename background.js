@@ -14,13 +14,15 @@ chrome.tabs.onSelectionChanged.addListener(function(tabId, info) {
 
 
 chrome.runtime.onConnect.addListener(function(port) {
+	var portita = chrome.runtime.connect({name: "PENISchannel"});
 	console.assert(port.name == "BAMGchannel");
 	port.onMessage.addListener(function(msg) {
 		if (msg.command == "down") {
-      port.postMessage({ok : "pizda"});
+      			//port.postMessage({ok : "pizda"});
+			portita.postMessage({command: "down"});
 
-    }
-      
+
+    		}
 	});
 });
 
