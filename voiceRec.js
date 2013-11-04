@@ -20,6 +20,7 @@ window.onload = function(e) {
 						 // 1 cand am zis share si urmeaza sa-i zic ce sa scrie la share
 						 // 0 cand am scris mesajul si urmeaza sa-i dau comanda 'Share' din nou 
 	var comment_box;
+	var comment_box_input;
 
 	var exit_status = false; // for pausing the recorder
 	console.log("penis");
@@ -80,6 +81,8 @@ window.onload = function(e) {
 	          			if (is_news_feed == 1) {
 	          				var post = $(".mainWrapper").get(scroll_index-1);
 	          				$(post).find('.uiLinkButton').get(0).click();
+	          				/////////
+	          				comment_box_input = $(post).find('.hiddenInput').get(0);
 	          				comment_box = $(post).find("textarea").get(0);
 	          				console.log(comment_box);
 	          				comment_box.click();
@@ -184,6 +187,9 @@ window.onload = function(e) {
 	          			if (is_commenting == 1) {
 	          				comment_box.value = command;
 	          				is_commenting = 0;
+	          				var e = jQuery.Event("keydown");
+	          				e.which = 13;
+	          				comment_box_input.trigger(e);
 	          				//$(document).find(".commentable_item").get(0).submit();
 	          			} // end if is_commenting
 	          			// begin if is_sharing
