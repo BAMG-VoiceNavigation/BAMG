@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Getting Started Extension's Popup</title>
+    <style>
+      body {
+        min-width: 300px;
+        overflow-x: hidden;
+		<!--background-color: #3B5998;-->
+        height: auto;
+        font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+		font-size: 13px;
+      }
+      
+      div {
+		min-height: 42px;
+		min-width: 300px;
+		display: block;
+		text-align: left;
+		border:2px solid;
+		border-radius:15px;
+		padding-left: 2px;
+	  }
+	  
+	 #text {
+    	height: auto;
+    	width: auto;
+    	text-align: left;
+    	display: table-cell;
+    	padding-left: 10px;
+    	font-size: 13px;
+	}
+	
+    </style>
+    <script src="popup.js"></script>
+    <script src="lorem_ipsum.js"></script>
+  </head>
+  <body>
+  	<div>
+  		<table>
+  			<tr>
+  				<td>
+  					<img src="facebook_logo.jpg">
+  				</td>
+  				<td id="text">
+  					Lorem ipsum
+  				</td>
+  			</tr>
+  		</table>
+  	</div>
+  	<table id="table_id">
+  		<tr><td>Lorem ipsum</td></tr>
+  		<tr><td>Lorem ipsum</td></tr>
+	</table>
+  </body>
+</html>
+
