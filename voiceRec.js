@@ -29,6 +29,7 @@ window.onload = function (e) {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             if (event.results[i].isFinal) {
                 if (is_searching != 1 && is_sharing != 1 && is_commenting != 1) {
+                	var raw_command = event.results[i][0].transcript;
                     var command = event.results[i][0].transcript.toLowerCase().replace(/ /g, '');
                 } else {
                     var command = event.results[i][0].transcript.toLowerCase();
@@ -235,7 +236,7 @@ window.onload = function (e) {
 
                 default:
                     port.postMessage({
-                        command: "Penis, ia mai spune o data!"
+                        command: "Sorry, I didn't get that."
                     })
                     console.log("default");
                     // begin if is_searching
@@ -247,6 +248,13 @@ window.onload = function (e) {
                         is_searching = 0;
                     } // end if is_searching
                     // begin if is_commenting
+                    if (location.href.split('messages').length == 2) {
+                    	// we're in messages
+                    	$(document).find("textarea").get(0).value += raw_command + " ";
+                    	// TODO
+                    	// trebuie imbunatatita partea asta
+                    	$(".uiButtonConfirm:nth-child(2)")[1].control.click();
+                    }
                     if (is_commenting == 1) {
                         comment_box.value = command;
                         is_commenting = 0;
