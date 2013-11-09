@@ -5,7 +5,7 @@ window.onload = function(e) {
 	var recognition = new webkitSpeechRecognition();
 	setInterval(function() {
 		recognition = new webkitSpeechRecognition();
-	}, 55000);
+	}, 15000);
 	recognition.continuous = true;
 	recognition.interimResults = true;
 	recognition.lang = "ro-RO";
@@ -19,6 +19,7 @@ window.onload = function(e) {
 	var is_sharing = -1; // -1 cand nu are nicio legatura cu share; 
 						 // 1 cand am zis share si urmeaza sa-i zic ce sa scrie la share
 						 // 0 cand am scris mesajul si urmeaza sa-i dau comanda 'Share' din nou 
+
 	var comment_box;
 	var comment_box_input;
 
@@ -54,6 +55,7 @@ window.onload = function(e) {
 	          			$(window).scrollTo(post, {offset:-50, duration: 750});
 	          			break;
 	          		case "op":
+	          		case "upc":
 	          		case "up":
 	          			port.postMessage({command : "Up"});
 	          			scroll_index--;
@@ -133,10 +135,13 @@ window.onload = function(e) {
 	          			port.postMessage({command : "Notifications"});
 	          			location.href = "https://www.facebook.com/notifications";
 	          			break;
+	          		case "message":
+	          		case "messenger":
 	          		case "messages":
 	          			port.postMessage({command : "Messages"});
 	          			is_news_feed = 0;
-	          			location.href = "https://www.facebook.com/messages";
+	          			user = location.href.split(".com/")[1].split('?')[0];
+	          			location.href = "https://www.facebook.com/messages/" + user;
 	          			break;
 	          		case "friendrequest":
 	          			port.postMessage({command : "Friend requests"});
