@@ -21,10 +21,10 @@ window.onload = function (e) {
     // 0 cand am scris mesajul si urmeaza sa-i dau comanda 'Share' din nou 
 
     var comment_box;
-    var comment_box_input;
+    var comment_box_input;s
 
     var exit_status = false; // for pausing the recorder
-    console.log("penis");
+    console.log("The recording has begun");
     recognition.onresult = function (event) {
         for (var i = event.resultIndex; i < event.results.length; ++i) {
             if (event.results[i].isFinal) {

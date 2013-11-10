@@ -14,7 +14,7 @@ chrome.tabs.onSelectionChanged.addListener(function(tabId, info) {
 
 
 chrome.runtime.onConnect.addListener(function(port) {
-	var portita = chrome.runtime.connect({name: "PENISchannel"});
+	var portita = chrome.runtime.connect({name: "secondChannel"});
 	console.assert(port.name == "BAMGchannel");
 	port.onMessage.addListener(function(msg) {
 		if (msg.command == "down") {

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 chrome.runtime.onConnect.addListener(function(portita) {
-	console.assert(portita.name == "PENISchannel");
+	console.assert(portita.name == "secondChannel");
 	portita.onMessage.addListener(function(msg) {
 		document.getElementById("output").innerHTML = msg.command;
 	});
