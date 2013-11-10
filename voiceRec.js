@@ -21,7 +21,7 @@ window.onload = function (e) {
     // 0 cand am scris mesajul si urmeaza sa-i dau comanda 'Share' din nou 
 
     var comment_box;
-    var comment_box_input;s
+    var comment_box_input;
 
     var exit_status = false; // for pausing the recorder
     console.log("The recording has begun");
@@ -79,13 +79,20 @@ window.onload = function (e) {
                     port.postMessage({
                         command: "Down"
                     });
-                    var post = $(".mainWrapper").get(scroll_index);
-                    scroll_index++;
-                    console.log(post);
-                    $(window).scrollTo(post, {
-                        offset: -50,
-                        duration: 750
-                    });
+                    if (is_news_feed == 1) {
+                        console.log("is_news_feed este 1");
+                    }
+                    if (is_news_feed == 1) {
+                        var post = $(".mainWrapper").get(scroll_index);
+                        scroll_index++;
+                        //console.log(post);
+                        $(window).scrollTo(post, {
+                            offset: -50,
+                            duration: 750
+                        });
+                    } else {
+                        window.scrollBy(0, 50);
+                    }
                     break;
 
                 case "exit":
@@ -178,19 +185,23 @@ window.onload = function (e) {
                 case "op":
                 case "upc":
                 case "up":
-                    port.postMessage({
-                        command: "Up"
-                    });
-                    scroll_index--;
-                    if (scroll_index >= 0) {
-                        var post = $(".mainWrapper").get(scroll_index - 1);
-                        $(window).scrollTo(post, {
-                            offset: -50,
-                            duration: 750
+                    if (is_news_feed == 1) {
+                        port.postMessage({
+                           command: "Up"
                         });
-                        console.log(post);
+                        scroll_index--;
+                        if (scroll_index >= 0) {
+                            var post = $(".mainWrapper").get(scroll_index - 1);
+                            $(window).scrollTo(post, {
+                                offset: -50,
+                                duration: 750
+                            });
+                            console.log(post);
+                        } else {
+                            scroll_index = 0;
+                        }
                     } else {
-                        scroll_index = 0;
+                        window.scrollBy(0, -50);
                     }
                     break;
 
