@@ -1,0 +1,53 @@
+<html>
+<head>
+<title> Popup Box DIV </title>
+<style type="text/css">
+#popup_box { 
+	display:none; 
+	position:fixed;  
+	_position:absolute;
+	height:300px;  
+	width:600px;  
+	background:#FFFFFF;  
+	left: 300px;
+	top: 150px;
+	z-index:100; 
+	margin-left: 15px;  
+
+	border:2px solid #ff0000;  	
+	padding:15px;  
+	font-size:15px;  
+	-moz-box-shadow: 0 0 5px #ff0000;
+	-webkit-box-shadow: 0 0 5px #ff0000;
+	box-shadow: 0 0 5px #ff0000;
+	
+}
+
+a{  
+cursor: pointer;  
+text-decoration:none;  
+} 
+
+#popupBoxClose {
+	font-size:20px;  
+	line-height:15px;  
+	right:5px;  
+	top:5px;  
+	position:absolute;  
+	color:#6fa5e2;  
+	font-weight:500;  	
+}
+</style>
+<script src="jquery-1.2.6.min.js" type="text/javascript"></script>
+
+<script src="second.js" type="text/javascript">
+</script>
+</head>
+<body>
+<div id="popup_box">	<!-- OUR PopupBox DIV-->
+	<img border="0" src="http://welweb.org/ThenandNow/images/Graf-Zeppelin.jpg" alt="Pulpit rock" width="500" height="200">
+	<a id="popupBoxClose">Close</a>	
+</div>
+<p> blank page </p>
+</body>
+</html>
