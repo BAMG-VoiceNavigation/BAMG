@@ -107,6 +107,8 @@ window.onload = function (e) {
                     location.href = "https://www.facebook.com/friends/requests";
                     break;
 
+                case "ga":
+                case "gau":
                 case "go":
                     port.postMessage({
                         command: "Go"
