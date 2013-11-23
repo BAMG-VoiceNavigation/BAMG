@@ -1,0 +1,35 @@
+#popup_box { 
+	display:none; 
+	position:fixed;  
+	_position:absolute;
+	height:300px;  
+	width:600px;  
+	background:#FFFFFF;  
+	left: 300px;
+	top: 150px;
+	z-index:100; 
+	margin-left: 15px;  
+
+	border:2px solid #ff0000;  	
+	padding:15px;  
+	font-size:15px;  
+	-moz-box-shadow: 0 0 5px #ff0000;
+	-webkit-box-shadow: 0 0 5px #ff0000;
+	box-shadow: 0 0 5px #ff0000;
+	
+}
+
+a{  
+cursor: pointer;  
+text-decoration:none;  
+} 
+
+#popupBoxClose {
+	font-size:20px;  
+	line-height:15px;  
+	right:5px;  
+	top:5px;  
+	position:absolute;  
+	color:#6fa5e2;  
+	font-weight:500;  	
+}
