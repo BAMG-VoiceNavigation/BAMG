@@ -62,7 +62,7 @@ window.onload = function (e) {
                         command: "Comment"
                     });
                     if (is_news_feed == 1) {
-                        var post = $(".mainWrapper").get(scroll_index - 1);
+                        var post = $("._4ikz").get(scroll_index - 1);
                         $(post).find('.uiLinkButton').get(0).click();
                         /////////
                         comment_box_input = $(post).find('.hiddenInput').get(0);
@@ -80,11 +80,13 @@ window.onload = function (e) {
                         command: "Down"
                     });
                     if (is_news_feed == 1) {
-                        console.log("is_news_feed este 1");
+                        //console.log("is_news_feed este 1");
+                        ana_banana = true;
                     }
                     if (is_news_feed == 1) {
-                        var post = $(".mainWrapper").get(scroll_index);
+                        var post = $("._4ikz").get(scroll_index);
                         scroll_index++;
+                        console.log(post);
                         //console.log(post);
                         $(window).scrollTo(post, {
                             offset: -50,
@@ -132,7 +134,7 @@ window.onload = function (e) {
                         command: "Like"
                     });
                     if (is_news_feed == 1) {
-                        var post = $(".mainWrapper").get(scroll_index - 1);
+                        var post = $("._4ikz").get(scroll_index - 1);
                         console.log(post);
                         $(post).find('.UFILikeLink').get(0).click();
                     } else {
@@ -171,7 +173,7 @@ window.onload = function (e) {
                         command: "Profile"
                     });
                     is_news_feed = 0;
-                    location.href = $(document).find('div.mainWrapper').eq(scroll_index - 1).find('div a:first').attr('href');
+                    location.href = $(document).find('div._4ikz').eq(scroll_index - 1).find('div a:first').attr('href');
                     break;
 
                 case "photos":
@@ -191,7 +193,7 @@ window.onload = function (e) {
                         });
                         scroll_index--;
                         if (scroll_index >= 0) {
-                            var post = $(".mainWrapper").get(scroll_index - 1);
+                            var post = $("._4ikz").get(scroll_index - 1);
                             $(window).scrollTo(post, {
                                 offset: -50,
                                 duration: 750
@@ -228,7 +230,7 @@ window.onload = function (e) {
                     });
                     if (is_news_feed == 1) {
                         if (is_sharing == -1) {
-                            var post = $(".mainWrapper").get(scroll_index - 1);
+                            var post = $("._4ikz").get(scroll_index - 1);
                             $(post).find('.share_action_link').get(0).click();
                             is_sharing = 1;
                         } else if (is_sharing == 0) {
