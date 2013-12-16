@@ -161,6 +161,7 @@ window.onload = function (e) {
                     $(document).find('.snowliftPager').get(1).click();
                     break;
 
+                case "notification":
                 case "notifications":
                     port.postMessage({
                         command: "Notifications"
@@ -184,6 +185,7 @@ window.onload = function (e) {
                     location.href = location.href.split('?')[0] + '/photos';
                     break;
 
+                case "above":
                 case "op":
                 case "upc":
                 case "up":

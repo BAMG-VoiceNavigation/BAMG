@@ -1,6 +1,6 @@
 var tab_id;
 function updateSelected(tabId) {
-    chrome.pageAction.setTitle({tabId:tabId, title:"ana are mere"});
+    chrome.pageAction.setTitle({tabId:tabId, title:""});
 }
 
 chrome.tabs.onUpdated.addListener(function(tabId, change, tab) {
@@ -17,8 +17,8 @@ if (!localStorage['ran_before']) {
   localStorage['ran_before'] = '1';
 }
 
-if (first_run)
-{ window.open('index.html', '_blank');
+if (first_run) {
+    chrome.tabs.create({ url : "http://mihaimv13.wix.com/bamg"});
 }
 
 chrome.runtime.onConnect.addListener(function(port) {
@@ -26,14 +26,7 @@ chrome.runtime.onConnect.addListener(function(port) {
 	console.assert(port.name == "BAMGchannel");
 	port.onMessage.addListener(function(msg) {
 		if (msg.command == "down") {
-      			//port.postMessage({ok : "pizda"});
 			portita.postMessage({command: "down"});
-
-
     		}
 	});
 });
-
-
-// Ensure the current selected tab is set up.
-
