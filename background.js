@@ -30,3 +30,11 @@ chrome.runtime.onConnect.addListener(function(port) {
     		}
 	});
 });
+
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    if (request.local_storage == "get")
+      sendResponse({rec_language: localStorage["rec_language"],
+                    rec_start : localStorage["rec_start"]});
+  });

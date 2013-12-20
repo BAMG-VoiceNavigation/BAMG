@@ -11,6 +11,7 @@
   },
   "background": { "scripts": ["background.js"] },
   "web_accessible_resources": ["jquery-1.10.2.min.map", "voiceRec.js", "jquery.js", "scrollto.js"],
+  "options_page": "options.html",
   "content_scripts": [
     { "matches": ["https://www.facebook.com/*"], "js": ["voiceRec.js", "jquery.js", "scrollto.js"] }
   ],
