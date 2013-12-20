@@ -29,12 +29,12 @@ window.onload = function (e) {
         var scroll_index = 0;
         var is_news_feed = 1;
         var is_searching = -1; // -1 cand nu are nicio legatura cu search; 
-        // 1 cand am zis search si urmeaza sa-i zic ce sa caute
-        // 0 cand am cautat si urmeaza sa-i dau comanda go
+        		       // 1 cand am zis search si urmeaza sa-i zic ce sa caute
+        		       // 0 cand am cautat si urmeaza sa-i dau comanda go
         var is_commenting = 0;
         var is_sharing = -1; // -1 cand nu are nicio legatura cu share; 
-        // 1 cand am zis share si urmeaza sa-i zic ce sa scrie la share
-        // 0 cand am scris mesajul si urmeaza sa-i dau comanda 'Share' din nou 
+        		     // 1 cand am zis share si urmeaza sa-i zic ce sa scrie la share
+		             // 0 cand am scris mesajul si urmeaza sa-i dau comanda 'Share' din nou 
 
         var comment_box;
         var comment_box_input;
@@ -77,7 +77,7 @@ window.onload = function (e) {
                         port.postMessage({
                             command: "Comment"
                         });
-                        if (is_news_feed == 1) {
+                        if (document.location.href == "https://www.facebook.com/") {
                             var post = $("._4ikz").get(scroll_index - 1);
                             $(post).find('.uiLinkButton').get(0).click();
                             /////////
@@ -95,11 +95,11 @@ window.onload = function (e) {
                         port.postMessage({
                             command: "Down"
                         });
-                        if (is_news_feed == 1) {
-                            //console.log("is_news_feed este 1");
+                        if (document.location.href == "https://www.facebook.com/") {
+                            console.log("is_news_feed este 1");
                             ana_banana = true;
                         }
-                        if (is_news_feed == 1) {
+                        if (document.location.href == "https://www.facebook.com/") {
                             var post = $("._4ikz").get(scroll_index);
                             scroll_index++;
                             console.log(post);
@@ -109,7 +109,7 @@ window.onload = function (e) {
                                 duration: 750
                             });
                         } else {
-                            window.scrollBy(0, 50);
+                            window.scrollBy(0, 500);
                         }
                         break;
 
@@ -207,7 +207,7 @@ window.onload = function (e) {
                     case "op":
                     case "upc":
                     case "up":
-                        if (is_news_feed == 1) {
+                        if (document.location.href == "https://www.facebook.com/") {
                             port.postMessage({
                                 command: "Up"
                             });
@@ -223,7 +223,7 @@ window.onload = function (e) {
                                 scroll_index = 0;
                             }
                         } else {
-                            window.scrollBy(0, -50);
+                            window.scrollBy(0, -500);
                         }
                         break;
 
