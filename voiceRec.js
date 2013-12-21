@@ -78,7 +78,7 @@ window.onload = function (e) {
                             command: "Comment"
                         });
                         if (document.location.href == "https://www.facebook.com/") {
-                            var post = $("._4ikz").get(scroll_index - 1);
+                            var post = $(".clearfix._5pcr.userContentWrapper").get(scroll_index - 1);
                             $(post).find('.uiLinkButton').get(0).click();
                             /////////
                             comment_box_input = $(post).find('.hiddenInput').get(0);
@@ -96,11 +96,10 @@ window.onload = function (e) {
                             command: "Down"
                         });
                         if (document.location.href == "https://www.facebook.com/") {
-                            console.log("is_news_feed este 1");
                             ana_banana = true;
                         }
                         if (document.location.href == "https://www.facebook.com/") {
-                            var post = $("._4ikz").get(scroll_index);
+                            var post = $(".clearfix._5pcr.userContentWrapper").get(scroll_index);
                             scroll_index++;
                             console.log(post);
                             //console.log(post);
@@ -152,7 +151,7 @@ window.onload = function (e) {
                             command: "Like"
                         });
                         if (is_news_feed == 1) {
-                            var post = $("._4ikz").get(scroll_index - 1);
+                            var post = $(".clearfix._5pcr.userContentWrapper").get(scroll_index - 1);
                             console.log(post);
                             $(post).find('.UFILikeLink').get(0).click();
                         } else {
@@ -192,7 +191,7 @@ window.onload = function (e) {
                             command: "Profile"
                         });
                         is_news_feed = 0;
-                        location.href = $(document).find('div._4ikz').eq(scroll_index - 1).find('div a:first').attr('href');
+                        location.href = $(document).find('div.clearfix _5pcr userContentWrapper').eq(scroll_index - 1).find('div a:first').attr('href');
                         break;
 
                     case "photos":
@@ -213,7 +212,7 @@ window.onload = function (e) {
                             });
                             scroll_index--;
                             if (scroll_index >= 0) {
-                                var post = $("._4ikz").get(scroll_index - 1);
+                                var post = $(".clearfix._5pcr.userContentWrapper").get(scroll_index - 1);
                                 $(window).scrollTo(post, {
                                     offset: -50,
                                     duration: 750
@@ -244,13 +243,14 @@ window.onload = function (e) {
                         is_searching = 1;
                         break;
 
+                    case "cher":
                     case "share":
                         port.postMessage({
                             command: "Share"
                         });
                         if (is_news_feed == 1) {
                             if (is_sharing == -1) {
-                                var post = $("._4ikz").get(scroll_index - 1);
+                                var post = $(".clearfix._5pcr.userContentWrapper").get(scroll_index - 1);
                                 $(post).find('.share_action_link').get(0).click();
                                 is_sharing = 1;
                             } else if (is_sharing == 0) {
