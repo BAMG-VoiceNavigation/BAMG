@@ -5,11 +5,11 @@ window.onload = function (e) {
         local_storage: "get"
     }, function (response) {
         rec_language = response.rec_language;
-        if (response.rec_start == "1") {
+        if (response.rec_start == "0") {
             // start when facebook loads
-            exit_status = false;
-        } else {
             exit_status = true;
+        } else {
+            exit_status = false;
         }
     });
 
