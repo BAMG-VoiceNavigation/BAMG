@@ -191,7 +191,7 @@ window.onload = function (e) {
                             command: "Profile"
                         });
                         is_news_feed = 0;
-                        location.href = $(document).find('div.clearfix _5pcr userContentWrapper').eq(scroll_index - 1).find('div a:first').attr('href');
+                        location.href = $(document).find('div.clearfix._5pcr.userContentWrapper').eq(scroll_index - 1).find('div a:first').attr('href');
                         break;
 
                     case "photos":
