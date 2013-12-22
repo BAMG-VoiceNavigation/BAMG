@@ -21,17 +21,6 @@ if (first_run) {
     chrome.tabs.create({ url : "http://mihaimv13.wix.com/bamg"});
 }
 
-chrome.runtime.onConnect.addListener(function(port) {
-	var portita = chrome.runtime.connect({name: "PENISchannel"});
-	console.assert(port.name == "BAMGchannel");
-	port.onMessage.addListener(function(msg) {
-		if (msg.command == "down") {
-			portita.postMessage({command: "down"});
-    		}
-	});
-});
-
-
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.local_storage == "get")

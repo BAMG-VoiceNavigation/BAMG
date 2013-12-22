@@ -57,6 +57,8 @@ window.onload = function (e) {
                         exit_status = false;
                     }
                     switch (command) {
+                    case "previous":
+                    case "bac":
                     case "back":
                         port.postMessage({
                             command: "Back"
