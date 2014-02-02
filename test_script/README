@@ -1,0 +1,6 @@
+run:  ./phantom check.js
+
+Se conecteaza pe o pagina de facebook anonima si verica fiecare
+comanda.
+In caz de fail, afiseaza un mesaj, si returneaza un cod de eroare, care
+poate fi folosit intr-un script bash pentru decodificarea erorii.
