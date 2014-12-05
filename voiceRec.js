@@ -17,6 +17,8 @@ window.onload = function (e) {
         var port = chrome.runtime.connect({
             name: "BAMGchannel"
         });
+        console.log(port);
+        if (!port.postMessage) console.log("NASPA");
         var recognition = new webkitSpeechRecognition();
         setInterval(function () {
             recognition = new webkitSpeechRecognition();
@@ -79,10 +81,9 @@ window.onload = function (e) {
                         port.postMessage({
                             command: "Comment"
                         });
-                        if (document.location.href == "https://www.facebook.com/") {
+                        if (document.location.href.indexOf("https://www.facebook.com/") === 0) {
                             var post = document.getElementsByClassName("userContentWrapper")[scroll_index-1];
                             $(post).find('.uiLinkButton').get(0).click();
-                            /////////
                             comment_box_input = $(post).find('.hiddenInput').get(0);
                             comment_box = $(post).find("textarea").get(0);
                             console.log(comment_box);
@@ -279,9 +280,6 @@ window.onload = function (e) {
                         break;
 
                     default:
-                        port.postMessage({
-                            command: "Sorry, I didn't get that."
-                        })
                         console.log("default");
                         // begin if is_searching
                         if (is_searching == 1) {
@@ -292,14 +290,18 @@ window.onload = function (e) {
                             console.log(searchbox.value);
                             //$(document.getElementsByClassName("button")[0]).click();
                             is_searching = 0;
+                            break;
                         } // end if is_searching
                         // begin if is_commenting
                         if (location.href.split('messages').length == 2) {
                             // we're in messages
-                            $(document).find("textarea").get(0).value += raw_command + "\n";
+                            $(document).find("textarea").get(0).click();
+                            $(document).find("textarea").get(0).value = raw_command + " ";
                             // TODO
                             // trebuie imbunatatita partea asta
 //                             $(".uiButtonConfirm:nth-child(2)")[1].control.click();
+                            
+                            break;
                         }
                         if (is_commenting == 1) {
                             comment_box.value = command;
@@ -308,6 +310,7 @@ window.onload = function (e) {
                             e.which = 13;
                             comment_box_input.trigger(e);
                             //$(document).find(".commentable_item").get(0).submit();
+                            break;
                         } // end if is_commenting
                         // begin if is_sharing
                         if (is_sharing == 1) {
@@ -315,7 +318,11 @@ window.onload = function (e) {
                             tmp.click();
                             tmp.value = command;
                             is_sharing = 0;
+                            break;
                         } // end if is_sharing
+//                         port.postMessage({
+//                             command: "Sorry, I didn't get that."
+//                         })
                     }
                 }
             }

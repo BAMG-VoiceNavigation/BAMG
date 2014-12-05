@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 chrome.runtime.onConnect.addListener(function(portita) {
-	console.assert(portita.name == "BAMGChannel");
+	console.assert(portita.name == "BAMGchannel");
 	portita.onMessage.addListener(function(msg) {
 		document.getElementById("output").innerHTML = msg.command;
 	});
